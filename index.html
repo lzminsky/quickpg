@@ -9,10 +9,10 @@
     <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #fafafa;
-            --fg: #1a1a1a;
-            --fg-dim: #555;
-            --fg-dimmer: #999;
+            --bg: #f9f7f4;
+            --fg: #111;
+            --fg-dim: #444;
+            --fg-dimmer: #888;
             --accent: #000;
         }
 
@@ -29,6 +29,7 @@
 
         html {
             font-size: 18px;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -52,24 +53,80 @@
             letter-spacing: -0.02em;
             margin-bottom: 48px;
             opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.1s forwards;
+        }
+
+        .mark {
+            font-family: 'JetBrains Mono', monospace;
+            margin-bottom: 32px;
+            opacity: 0;
             animation: fadeIn 0.8s ease-out forwards;
         }
 
-        .bio {
+        .mark-link {
+            color: var(--fg);
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+            display: inline-block;
+        }
+
+        .mark-link:hover {
+            opacity: 0.5;
+        }
+
+        .mark-symbol {
+            font-size: 2.5rem;
+            display: block;
+            line-height: 1;
+        }
+
+        .mark-equation {
+            font-size: 1.1rem;
+            color: var(--fg-dim);
+            letter-spacing: 0.1em;
+        }
+
+        .nav {
             margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.05s forwards;
+        }
+
+        .nav a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            text-transform: lowercase;
+            letter-spacing: 0.05em;
+            color: var(--fg-dimmer);
+            text-decoration: none;
+            margin-right: 24px;
+            transition: color 0.2s ease;
+        }
+
+        .nav a:hover {
+            color: var(--fg);
+        }
+
+        .bio {
+            margin-bottom: 40px;
             opacity: 0;
             animation: fadeIn 0.8s ease-out 0.1s forwards;
         }
 
         .bio p {
-            font-size: 1.05rem;
+            font-size: 0.95rem;
             color: var(--fg-dim);
             line-height: 1.75;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
         }
 
         .bio p:last-child {
             margin-bottom: 0;
+        }
+
+        .bio .current {
+            color: var(--fg);
+            margin-top: 24px;
         }
 
         .cv {
@@ -95,30 +152,119 @@
 
         .links {
             margin-bottom: 64px;
+            padding: 20px 0;
+            border-top: 1px solid #e8e4df;
+            border-bottom: 1px solid #e8e4df;
             opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.3s forwards;
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
         }
 
         .links a {
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.85rem;
-            color: var(--fg-dim);
+            color: var(--fg);
             text-decoration: none;
             transition: color 0.2s ease;
-            margin-right: 24px;
+            margin-right: 32px;
         }
 
         .links a:hover {
+            color: var(--fg-dim);
+        }
+
+        .section {
+            margin-bottom: 64px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.25s forwards;
+        }
+
+        .section:nth-child(4) { animation-delay: 0.3s; }
+        .section:nth-child(5) { animation-delay: 0.35s; }
+
+        .section-title {
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            letter-spacing: -0.01em;
+            color: var(--fg);
+            margin-bottom: 24px;
+        }
+
+        .section-intro {
+            font-size: 0.9rem;
+            color: var(--fg-dim);
+            line-height: 1.7;
+            margin-bottom: 28px;
+        }
+
+        .project {
+            margin-bottom: 24px;
+        }
+
+        .project:last-child {
+            margin-bottom: 0;
+        }
+
+        .project-name {
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--fg);
+            margin-bottom: 6px;
+        }
+
+        .project-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--fg-dimmer);
+            margin-left: 8px;
+        }
+
+        .project-mark {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--fg-dimmer);
+            margin-left: 4px;
+        }
+
+        .mark-symbol {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--fg-dimmer);
+            margin-left: 4px;
+        }
+
+        .project-desc {
+            font-size: 0.9rem;
+            color: var(--fg-dim);
+            line-height: 1.6;
+        }
+
+        .writing-list {
+            list-style: none;
+        }
+
+        .writing-item {
+            margin-bottom: 10px;
+        }
+
+        .writing-item a {
+            color: var(--fg-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            font-size: 0.95rem;
+        }
+
+        .writing-item a:hover {
             color: var(--accent);
         }
 
         .divider {
             width: 40px;
             height: 1px;
-            background: #ddd;
-            margin-bottom: 48px;
+            background: #e8e4df;
+            margin: 48px 0;
             opacity: 0;
-            animation: fadeIn 0.8s ease-out 0.4s forwards;
+            animation: fadeIn 0.8s ease-out 0.45s forwards;
         }
 
         .books-section {
@@ -127,25 +273,27 @@
         }
 
         .books-title {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
+            font-family: 'EB Garamond', Georgia, serif;
+            font-size: 1.4rem;
             font-weight: 500;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--fg-dimmer);
+            letter-spacing: -0.01em;
+            color: var(--fg);
             margin-bottom: 24px;
         }
 
         .books-list {
             list-style: none;
-            columns: 1;
         }
 
         .book-item {
-            font-size: 0.9rem;
-            color: var(--fg-dim);
-            margin-bottom: 10px;
+            margin-bottom: 0;
+            padding: 16px 0;
             line-height: 1.5;
+            border-bottom: 1px solid #e8e4df;
+        }
+
+        .book-item:last-child {
+            border-bottom: none;
         }
 
         .book-number {
@@ -155,9 +303,38 @@
             margin-right: 12px;
         }
 
+        .book-name {
+            font-size: 0.95rem;
+            color: var(--fg);
+            font-weight: 500;
+        }
+
         .book-author {
             color: var(--fg-dimmer);
             font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .book-note {
+            font-size: 0.85rem;
+            color: var(--fg-dim);
+            margin-top: 4px;
+            padding-left: 32px;
+            line-height: 1.6;
+        }
+
+        .footer {
+            margin-top: 64px;
+            padding-top: 32px;
+            text-align: center;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.6s forwards;
+        }
+
+        .footer-mark {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 1.2rem;
+            color: var(--fg-dimmer);
         }
 
         @keyframes fadeIn {
@@ -180,9 +357,26 @@
                 padding: 80px 24px 60px;
             }
 
+            .mark-symbol {
+                font-size: 2rem;
+            }
+
+            .nav {
+                margin-bottom: 36px;
+            }
+
+            .nav a {
+                margin-right: 16px;
+                font-size: 0.7rem;
+            }
+
             .title {
                 font-size: 1.8rem;
-                margin-bottom: 40px;
+                margin-bottom: 36px;
+            }
+
+            .links {
+                padding: 16px 0;
             }
 
             .links a {
@@ -190,24 +384,53 @@
                 margin-right: 0;
                 margin-bottom: 12px;
             }
+
+            .links a:last-child {
+                margin-bottom: 0;
+            }
+
+            .section-title {
+                font-size: 1.2rem;
+            }
+
+            .books-title {
+                font-size: 1.2rem;
+            }
+
+            .book-note {
+                padding-left: 0;
+                margin-top: 8px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <div class="mark">
+            <a href="http://homepages.math.uic.edu/~kauffman/Laws.pdf" target="_blank" rel="noopener" class="mark-link">
+                <span class="mark-symbol">┐</span><br>
+                <span class="mark-equation">J = ┐J</span>
+            </a>
+        </div>
+
+        <nav class="nav">
+            <a href="#projects">Projects</a>
+            <a href="#writing">Writing</a>
+            <a href="#library">Library</a>
+        </nav>
+        
         <h1 class="title">Lauris</h1>
         
         <div class="bio">
-            <p>I like thinking about interesting markets — how they form, why they fail, what emerges from the wreckage. Mostly I'm trying to understand information failure: who knows what, who can't know what, and what happens in the gap.</p>
+            <p>I like thinking about interesting systems and how to best formalize them from a market structure perspective.</p>
             
-            <p>I've always been a big reader. Hayek, Simon, Spencer-Brown. Austrian economics, institutional theory, market microstructure. The kind of work that explains why the world doesn't clear.</p>
-        </div>
-
-        <div class="cv">
-            <div class="cv-item">6th, International Philosophy Olympiad</div>
-            <div class="cv-item">London School of Economics, 1st</div>
-            <div class="cv-item">Insrt/Multiplier (NFT financialization, gamified spot markets)</div>
-            <div class="cv-item">Now, independent research</div>
+            <p>How they form, why they fail, what emerges from the wreckage. Mostly I'm trying to understand information failure: who knows what, who can't know what, and what happens in the gap.</p>
+            
+            <p>I've been a heavy reader all my life. Philosophy first — which placed me as an International Philosophy Olympiad laureate in high school. Studied at the University of Amsterdam and the London School of Economics, both with distinction.</p>
+            
+            <p>If I had to frame what I like thinking about the most, I would call it exploring legibility, order and systems that have convexity dynamics.</p>
+            
+            <p class="current">Currently writing on why prediction markets will displace derivatives for binary risk.</p>
         </div>
 
         <div class="links">
@@ -215,28 +438,160 @@
             <a href="https://twitter.com/lzminsky" target="_blank">@lzminsky</a>
         </div>
 
+        <div class="section" id="projects">
+            <div class="section-title">Projects and Products</div>
+            
+            <p class="section-intro">As an operator, I have built products that have generated 8-figures in gross spend, seven-figures in fees and have, in total, acquired six-figures in activated users. As a DeFi operator, my company was one of the first to partner with brands such as Berachain and Pudgy Penguins.</p>
+            
+            <div class="project">
+                <div class="project-name">Bounded Catallaxy <span class="project-mark">┐</span> <span class="project-date">2026–</span></div>
+                <p class="project-desc">Combining frontier engineering with theory to study points of failure in order, legibility, and equilibria.</p>
+            </div>
+            
+            <div class="project">
+                <div class="project-name">Multiplier <span class="project-date">2024–2025</span></div>
+                <p class="project-desc">A social casino with spot market interactions. Users play and win long-tail assets. A system for taking non-rotational capital and injecting it into spot markets.</p>
+            </div>
+            
+            <div class="project">
+                <div class="project-name">Insrt (Blast) <span class="project-date">2024</span></div>
+                <p class="project-desc">A fun gambling experience for NFTs and real world assets.</p>
+            </div>
+            
+            <div class="project">
+                <div class="project-name">Insrt <span class="project-date">2022–2023</span></div>
+                <p class="project-desc">Yearn for NFT financialization. We combined fractionalization and yield-generation legos for NFT finance.</p>
+            </div>
+            
+            <div class="project">
+                <div class="project-name">Vaal <span class="project-date">2020–2021</span></div>
+                <p class="project-desc">Building the European version of dv01. A plumbing engine for securitization that we built with some of my best friends from the LSE.</p>
+            </div>
+        </div>
+
+        <div class="section" id="writing">
+            <div class="section-title">Selected Writing</div>
+            <ul class="writing-list">
+                <li class="writing-item"><a href="#">Hypergamblification as a Positive-Sum Financial Primitive</a></li>
+                <li class="writing-item"><a href="#">Play As Mechanism: An Intro to Hypergamblified Market Design</a></li>
+                <li class="writing-item"><a href="#">Mimesis and Market Structure</a></li>
+                <li class="writing-item"><a href="#">Welcome to Post-CT</a></li>
+                <li class="writing-item"><a href="#">Tokens as Instruments for Underwriting User Behavior</a></li>
+                <li class="writing-item"><a href="#">The Pro-Social Case for Tokenizing Babies</a></li>
+            </ul>
+        </div>
+
         <div class="divider"></div>
 
-        <div class="books-section">
-            <div class="books-title">Fifteen Books</div>
+        <div class="books-section" id="library">
+            <div class="books-title">The Library and the Shibboleth</div>
             
             <ol class="books-list">
-                <li class="book-item"><span class="book-number">01</span>Seeing Like a State <span class="book-author">— Scott</span></li>
-                <li class="book-item"><span class="book-number">02</span>The Venture of Islam <span class="book-author">— Hodgson</span></li>
-                <li class="book-item"><span class="book-number">03</span>Models of Bounded Rationality <span class="book-author">— Simon</span></li>
-                <li class="book-item"><span class="book-number">04</span>On the Nature of Things <span class="book-author">— Lucretius</span></li>
-                <li class="book-item"><span class="book-number">05</span>The Count of Monte Cristo <span class="book-author">— Dumas</span></li>
-                <li class="book-item"><span class="book-number">06</span>A History of Philosophy <span class="book-author">— Copleston</span></li>
-                <li class="book-item"><span class="book-number">07</span>Critique of Pure Reason <span class="book-author">— Kant</span></li>
-                <li class="book-item"><span class="book-number">08</span>Theory of Value <span class="book-author">— Debreu</span></li>
-                <li class="book-item"><span class="book-number">09</span>Law, Legislation and Liberty <span class="book-author">— Hayek</span></li>
-                <li class="book-item"><span class="book-number">10</span>Genetic Epistemology <span class="book-author">— Piaget</span></li>
-                <li class="book-item"><span class="book-number">11</span>The Concept of the Political <span class="book-author">— Schmitt</span></li>
-                <li class="book-item"><span class="book-number">12</span>Collected Poems <span class="book-author">— Cavafy</span></li>
-                <li class="book-item"><span class="book-number">13</span>The Origins of Political Order <span class="book-author">— Fukuyama</span></li>
-                <li class="book-item"><span class="book-number">14</span>The Swerve <span class="book-author">— Greenblatt</span></li>
-                <li class="book-item"><span class="book-number">15</span>Fanged Noumena <span class="book-author">— Land</span></li>
+                <li class="book-item">
+                    <span class="book-number">01</span>
+                    <span class="book-name">Seeing Like a State</span> <span class="book-author">— Scott</span>
+                    <p class="book-note">The map is not the territory and how a map can kill millions.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">02</span>
+                    <span class="book-name">The Venture of Islam</span> <span class="book-author">— Hodgson</span>
+                    <p class="book-note">Civilizational history at its best.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">03</span>
+                    <span class="book-name">Models of Bounded Rationality</span> <span class="book-author">— Simon</span>
+                    <p class="book-note">We all satisfice to our computational and emotional limits.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">04</span>
+                    <span class="book-name">On the Nature of Things</span> <span class="book-author">— Lucretius</span>
+                    <p class="book-note">The most beautiful poetry ever written.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">05</span>
+                    <span class="book-name">The Count of Monte Cristo</span> <span class="book-author">— Dumas</span>
+                    <p class="book-note">Patience as strategy. The revenge plot as mechanism design problem.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">06</span>
+                    <span class="book-name">A History of Philosophy</span> <span class="book-author">— Copleston</span>
+                    <p class="book-note">The topography of the history of thought.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">07</span>
+                    <span class="book-name">Critique of Pure Reason</span> <span class="book-author">— Kant</span>
+                    <p class="book-note">The only thing that still annoys me is that the Terminus is the Manifold.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">08</span>
+                    <span class="book-name">Theory of Value</span> <span class="book-author">— Debreu</span>
+                    <p class="book-note">Beautiful, rigorous, and wrong in exactly the ways that matter.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">09</span>
+                    <span class="book-name">Law, Legislation and Liberty</span> <span class="book-author">— Hayek</span>
+                    <p class="book-note">Cosmos versus Taxis. Spontaneous order versus constructed order. The source code for everything I work on.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">10</span>
+                    <span class="book-name">Genetic Epistemology</span> <span class="book-author">— Piaget</span>
+                    <p class="book-note">The biological precursor to Kantian epistemology.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">11</span>
+                    <span class="book-name">The Concept of the Political</span> <span class="book-author">— Schmitt</span>
+                    <p class="book-note">Sovereignty. Friend/Foe. Which is which?</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">12</span>
+                    <span class="book-name">Collected Poems</span> <span class="book-author">— Cavafy</span>
+                    <p class="book-note">Above all, don't fool yourself, don't say it was a dream, your ears deceived you.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">13</span>
+                    <span class="book-name">The Origins of Political Order</span> <span class="book-author">— Fukuyama</span>
+                    <p class="book-note">How institutions actually form. The state, rule of law, accountability and why most places fail to get all three.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">14</span>
+                    <span class="book-name">The Swerve</span> <span class="book-author">— Greenblatt</span>
+                    <p class="book-note">How Lucretius got rediscovered and changed everything. Ideas have material histories.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">15</span>
+                    <span class="book-name">Fanged Noumena</span> <span class="book-author">— Land</span>
+                    <p class="book-note">I just want to note that I like Land non-performatively.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">16</span>
+                    <span class="book-name">From Third World to First</span> <span class="book-author">— Lee Kuan Yew</span>
+                    <p class="book-note">Whoever rules must have that iron in him. This is not a game of cards. This is your life and mine.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">17</span>
+                    <span class="book-name">Changing Fortunes</span> <span class="book-author">— Volcker & Gyohten</span>
+                    <p class="book-note">Monetary history from the people who made it. Central banking as craft, not science.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">18</span>
+                    <span class="book-name">With the Old Breed</span> <span class="book-author">— Sledge</span>
+                    <p class="book-note">War as it actually is. The corrective to every abstraction about conflict.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">19</span>
+                    <span class="book-name">On War</span> <span class="book-author">— Clausewitz</span>
+                    <p class="book-note">Friction, fog, the continuation of politics by other means. Strategy as dealing with uncertainty, not eliminating it.</p>
+                </li>
+                <li class="book-item">
+                    <span class="book-number">20</span>
+                    <span class="book-name">Simulacra and Simulation</span> <span class="book-author">— Baudrillard</span>
+                    <p class="book-note">We live in a hyperreality and it is only getting more strange. A prophetic monograph.</p>
+                </li>
             </ol>
+        </div>
+
+        <div class="footer">
+            <span class="footer-mark">┐</span>
         </div>
     </div>
 </body>
