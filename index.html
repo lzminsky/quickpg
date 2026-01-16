@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lauris</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg: #fafafa;
+            --fg: #1a1a1a;
+            --fg-dim: #555;
+            --fg-dimmer: #999;
+            --accent: #000;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        ::selection {
+            background: var(--fg);
+            color: var(--bg);
+        }
+
+        html {
+            font-size: 18px;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--fg);
+            font-family: 'EB Garamond', Georgia, serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            padding: 120px 40px 80px;
+        }
+
+        .title {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+
+        .bio {
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.1s forwards;
+        }
+
+        .bio p {
+            font-size: 1.05rem;
+            color: var(--fg-dim);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .bio p:last-child {
+            margin-bottom: 0;
+        }
+
+        .cv {
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.2s forwards;
+        }
+
+        .cv-item {
+            font-size: 0.95rem;
+            color: var(--fg-dim);
+            margin-bottom: 8px;
+            padding-left: 16px;
+            position: relative;
+        }
+
+        .cv-item::before {
+            content: "—";
+            position: absolute;
+            left: 0;
+            color: var(--fg-dimmer);
+        }
+
+        .links {
+            margin-bottom: 64px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards;
+        }
+
+        .links a {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            color: var(--fg-dim);
+            text-decoration: none;
+            transition: color 0.2s ease;
+            margin-right: 24px;
+        }
+
+        .links a:hover {
+            color: var(--accent);
+        }
+
+        .divider {
+            width: 40px;
+            height: 1px;
+            background: #ddd;
+            margin-bottom: 48px;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.4s forwards;
+        }
+
+        .books-section {
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.5s forwards;
+        }
+
+        .books-title {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--fg-dimmer);
+            margin-bottom: 24px;
+        }
+
+        .books-list {
+            list-style: none;
+            columns: 1;
+        }
+
+        .book-item {
+            font-size: 0.9rem;
+            color: var(--fg-dim);
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+
+        .book-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--fg-dimmer);
+            margin-right: 12px;
+        }
+
+        .book-author {
+            color: var(--fg-dimmer);
+            font-style: italic;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            html {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 80px 24px 60px;
+            }
+
+            .title {
+                font-size: 1.8rem;
+                margin-bottom: 40px;
+            }
+
+            .links a {
+                display: block;
+                margin-right: 0;
+                margin-bottom: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Lauris</h1>
+        
+        <div class="bio">
+            <p>I like thinking about interesting markets — how they form, why they fail, what emerges from the wreckage. Mostly I'm trying to understand information failure: who knows what, who can't know what, and what happens in the gap.</p>
+            
+            <p>I've always been a big reader. Hayek, Simon, Spencer-Brown. Austrian economics, institutional theory, market microstructure. The kind of work that explains why the world doesn't clear.</p>
+        </div>
+
+        <div class="cv">
+            <div class="cv-item">6th, International Philosophy Olympiad</div>
+            <div class="cv-item">London School of Economics, 1st</div>
+            <div class="cv-item">Insrt/Multiplier (NFT financialization, gamified spot markets)</div>
+            <div class="cv-item">Now, independent research</div>
+        </div>
+
+        <div class="links">
+            <a href="https://boundedcatallaxy.com" target="_blank">Bounded Catallaxy</a>
+            <a href="https://twitter.com/lzminsky" target="_blank">@lzminsky</a>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="books-section">
+            <div class="books-title">Fifteen Books</div>
+            
+            <ol class="books-list">
+                <li class="book-item"><span class="book-number">01</span>Seeing Like a State <span class="book-author">— Scott</span></li>
+                <li class="book-item"><span class="book-number">02</span>The Venture of Islam <span class="book-author">— Hodgson</span></li>
+                <li class="book-item"><span class="book-number">03</span>Models of Bounded Rationality <span class="book-author">— Simon</span></li>
+                <li class="book-item"><span class="book-number">04</span>On the Nature of Things <span class="book-author">— Lucretius</span></li>
+                <li class="book-item"><span class="book-number">05</span>The Count of Monte Cristo <span class="book-author">— Dumas</span></li>
+                <li class="book-item"><span class="book-number">06</span>A History of Philosophy <span class="book-author">— Copleston</span></li>
+                <li class="book-item"><span class="book-number">07</span>Critique of Pure Reason <span class="book-author">— Kant</span></li>
+                <li class="book-item"><span class="book-number">08</span>Theory of Value <span class="book-author">— Debreu</span></li>
+                <li class="book-item"><span class="book-number">09</span>Law, Legislation and Liberty <span class="book-author">— Hayek</span></li>
+                <li class="book-item"><span class="book-number">10</span>Genetic Epistemology <span class="book-author">— Piaget</span></li>
+                <li class="book-item"><span class="book-number">11</span>The Concept of the Political <span class="book-author">— Schmitt</span></li>
+                <li class="book-item"><span class="book-number">12</span>Collected Poems <span class="book-author">— Cavafy</span></li>
+                <li class="book-item"><span class="book-number">13</span>The Origins of Political Order <span class="book-author">— Fukuyama</span></li>
+                <li class="book-item"><span class="book-number">14</span>The Swerve <span class="book-author">— Greenblatt</span></li>
+                <li class="book-item"><span class="book-number">15</span>Fanged Noumena <span class="book-author">— Land</span></li>
+            </ol>
+        </div>
+    </div>
+</body>
+</html>
