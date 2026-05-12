@@ -233,44 +233,66 @@
             margin-left: 4px;
         }
 
-        .mark-symbol {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.9rem;
-            color: var(--fg-dimmer);
-            margin-left: 4px;
-        }
-
         .project-desc {
             font-size: 0.9rem;
             color: var(--fg-dim);
             line-height: 1.6;
         }
 
-        .writing-list {
-            list-style: none;
-        }
-
-        .writing-item {
-            margin-bottom: 14px;
-            padding-bottom: 14px;
-            border-bottom: 1px solid #f0ece7;
-        }
-
-        .writing-item:last-child {
-            margin-bottom: 0;
+        /* Nested sub-products under a parent entity */
+        .sub-project {
+            margin-top: 20px;
+            margin-left: 24px;
             padding-bottom: 0;
             border-bottom: none;
         }
 
-        .writing-item a {
-            color: var(--fg-dim);
-            text-decoration: none;
-            transition: color 0.2s ease;
+        .sub-project-name {
+            font-style: italic;
+            font-weight: 500;
             font-size: 0.95rem;
+            color: var(--fg);
+            margin-bottom: 4px;
         }
 
-        .writing-item a:hover {
-            color: var(--accent);
+        .sub-project-date {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            color: var(--fg-dimmer);
+            margin-left: 8px;
+            font-style: normal;
+            font-weight: 400;
+        }
+
+        .sub-project-desc {
+            font-size: 0.875rem;
+            color: var(--fg-dim);
+            line-height: 1.65;
+        }
+
+        /* Inline links inside descriptions and writing pointer */
+        .bio a,
+        .project-desc a,
+        .sub-project-desc a,
+        .writing-pointer a {
+            color: var(--fg);
+            text-decoration: underline;
+            text-decoration-color: var(--fg-dimmer);
+            text-underline-offset: 3px;
+            transition: text-decoration-color 0.2s ease;
+        }
+
+        .bio a:hover,
+        .project-desc a:hover,
+        .sub-project-desc a:hover,
+        .writing-pointer a:hover {
+            text-decoration-color: var(--fg);
+        }
+
+        .writing-pointer {
+            font-size: 0.95rem;
+            color: var(--fg-dim);
+            line-height: 1.7;
         }
 
         .divider {
@@ -422,9 +444,13 @@
                 margin-top: 8px;
                 font-size: 0.8rem;
             }
-            
+
             .book-item {
                 padding: 14px 0;
+            }
+
+            .sub-project {
+                margin-left: 16px;
             }
         }
     </style>
@@ -439,56 +465,67 @@
         </div>
 
         <nav class="nav">
+            <a href="#research">Research</a>
             <a href="#projects">Projects</a>
             <a href="#writing">Writing</a>
             <a href="#library">Library</a>
         </nav>
-        
+
         <h1 class="title">Lauris</h1>
-        
+
         <div class="bio">
             <p>I like thinking about systems and how to best formalize them from a market structure perspective.</p>
-            
+
             <p>How they form, why they fail, what emerges from the wreckage. Mostly I'm trying to understand information failure: who knows what, who can't know what, and what happens in the gap.</p>
-            
-            <p>I've been a heavy reader all my life. Philosophy first — which placed me as an International Philosophy Olympiad laureate in high school. Studied at the London School of Economics with distinction.</p>
-            
+
+            <p>Philosophy first. International Philosophy Olympiad laureate, LSE distinction.</p>
+
             <p>If I had to frame what I like thinking about the most, I would call it exploring legibility, order and systems that have convexity dynamics.</p>
-            
-            <p class="current">Currently writing on why prediction markets will displace derivatives for binary risk.</p>
+
+            <p class="current">Lately, prediction markets, <a href="https://x.com/lzminsky/status/2051741765682508073" target="_blank">as a novel, new asset class</a>.</p>
+
+            <p>At times, I work alongside the biggest exchanges for the category when it comes to theory and market design, as well as advising early stage teams wherever I can.</p>
         </div>
 
         <div class="links">
-            <a href="https://bounded.works" target="_blank">Bounded Catallaxy</a>
             <a href="https://twitter.com/lzminsky" target="_blank">@lzminsky</a>
             <a href="mailto:hello@lauris.xyz">hello@lauris.xyz</a>
         </div>
 
+        <div class="section" id="research">
+            <div class="section-title">Research</div>
+
+            <div class="project">
+                <div class="project-name">SLAM — Seeing Like a Market</div>
+                <p class="project-desc">Microstructure framework for prediction markets. Presented at the inaugural Kalshi Research Conference, with other conference speakers being Cyril Goddeeris, Toby Moskowitz and Robin Hanson. Interactive at <a href="https://slampaper.xyz" target="_blank">slampaper.xyz</a>.</p>
+            </div>
+        </div>
+
         <div class="section" id="projects">
             <div class="section-title">Projects and Products</div>
-            
-            <p class="section-intro">As an operator, I have built products that have generated 8-figures in gross spend, seven-figures in fees and have, in total, acquired six-figures in activated users. As a DeFi operator, my company was one of the first to partner with brands such as Berachain and Pudgy Penguins.</p>
-            
+
+            <p class="section-intro">As an operator, I have built products that have generated 8-figures in gross spend, seven-figures in fees and have, in total, acquired six-figures in activated users.</p>
+
             <div class="project">
-                <div class="project-name">Bounded Catallaxy <span class="project-mark">┐</span> <span class="project-date">2026–</span></div>
-                <p class="project-desc">Combining frontier engineering with theory to study points of failure in order, legibility, and equilibria.</p>
+                <div class="project-name">Insrt Labs <span class="project-mark">┐</span> <span class="project-date">2022–2025</span></div>
+                <p class="project-desc">I ran Insrt Labs across three product regimes: NFT financialization, onchain gacha redemption, and gamified spot-market routing. Raised $2.73M pre-seed; generated 8-figures in topline spend over 36 months. 10 FTEs, 5 audited releases. Shutdown in December 2025 after the market changed.</p>
+
+                <div class="sub-project">
+                    <div class="sub-project-name">Multiplier <span class="sub-project-date">2024–2025</span></div>
+                    <p class="sub-project-desc">A social casino with spot market interactions. Users play and win long-tail assets. A system for taking non-rotational capital and injecting it into spot markets. Brand ambassadors FaZe Kay and Bryce Hall; ecosystem partners included the Solana Foundation and Raydium. I was working with my close friend and Head of Growth <a href="https://twitter.com/gritcult" target="_blank">Gritcult</a> on distribution.</p>
+                </div>
+
+                <div class="sub-project">
+                    <div class="sub-project-name">Insrt / Blast <span class="sub-project-date">2024</span></div>
+                    <p class="sub-project-desc">One of the first onchain gacha redemption products. Just-in-time inventory mechanism designed under capital constraint. <a href="https://x.com/_bbodd/status/1773817755457757643" target="_blank">People made money and had fun.</a></p>
+                </div>
+
+                <div class="sub-project">
+                    <div class="sub-project-name">Insrt <span class="sub-project-date">2022–2023</span></div>
+                    <p class="sub-project-desc">Yearn for NFT financialization. Fractionalization and yield-generation legos; partnerships included Metastreet (now usd.ai), Pudgy Penguins and the Berachain ecosystem.</p>
+                </div>
             </div>
-            
-            <div class="project">
-                <div class="project-name">Multiplier <span class="project-date">2024–2025</span></div>
-                <p class="project-desc">A social casino with spot market interactions. Users play and win long-tail assets. A system for taking non-rotational capital and injecting it into spot markets.</p>
-            </div>
-            
-            <div class="project">
-                <div class="project-name">Insrt (Blast) <span class="project-date">2024</span></div>
-                <p class="project-desc">A fun gambling experience for NFTs and real world assets.</p>
-            </div>
-            
-            <div class="project">
-                <div class="project-name">Insrt <span class="project-date">2022–2023</span></div>
-                <p class="project-desc">Yearn for NFT financialization. We combined fractionalization and yield-generation legos for NFT finance.</p>
-            </div>
-            
+
             <div class="project">
                 <div class="project-name">Vaal <span class="project-date">2020–2021</span></div>
                 <p class="project-desc">Building the European version of dv01. A plumbing engine for securitization that we built with some of my best friends from the LSE.</p>
@@ -496,22 +533,15 @@
         </div>
 
         <div class="section" id="writing">
-            <div class="section-title">Selected Writing</div>
-            <ul class="writing-list">
-                <li class="writing-item"><a href="#">Hypergamblification as a Positive-Sum Financial Primitive</a></li>
-                <li class="writing-item"><a href="#">Play As Mechanism: An Intro to Hypergamblified Market Design</a></li>
-                <li class="writing-item"><a href="#">Mimesis and Market Structure</a></li>
-                <li class="writing-item"><a href="#">Welcome to Post-CT</a></li>
-                <li class="writing-item"><a href="#">Tokens as Instruments for Underwriting User Behavior</a></li>
-                <li class="writing-item"><a href="#">The Pro-Social Case for Tokenizing Babies</a></li>
-            </ul>
+            <div class="section-title">Writing</div>
+            <p class="writing-pointer"><a href="https://twitter.com/lzminsky/highlights" target="_blank">Twitter highlights</a> — mostly prediction markets, microstructure, mechanism design, and market regimes.</p>
         </div>
 
         <div class="divider"></div>
 
         <div class="books-section" id="library">
             <div class="books-title">The Library and the Shibboleth</div>
-            
+
             <ol class="books-list">
                 <li class="book-item">
                     <span class="book-number">01</span>
