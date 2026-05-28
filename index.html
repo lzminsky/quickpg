@@ -241,8 +241,9 @@
 
         /* Nested sub-products under a parent entity */
         .sub-project {
-            margin-top: 20px;
-            margin-left: 24px;
+            position: relative;
+            margin-top: 0;
+            margin-bottom: 22px;
             padding-bottom: 0;
             border-bottom: none;
         }
@@ -388,6 +389,149 @@
             }
         }
 
+        /* ─── Reveal-on-scroll (below-the-fold sections) ─── */
+        .js [data-reveal] {
+            opacity: 0;
+            animation: none;
+            transform: translateY(16px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+            will-change: opacity, transform;
+        }
+
+        .js [data-reveal].is-visible {
+            opacity: 1;
+            transform: none;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js [data-reveal],
+            .title, .mark, .nav, .bio, .links,
+            .section, .divider, .books-section, .footer {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+                transition: none !important;
+            }
+        }
+
+        /* ─── Project header row (name + date chip) ─── */
+        .project-head,
+        .sub-project-head {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 12px;
+        }
+
+        .project-head { margin-bottom: 7px; }
+        .sub-project-head { margin-bottom: 4px; }
+
+        .project-head .project-name,
+        .sub-project-head .sub-project-name {
+            margin-bottom: 0;
+        }
+
+        .project-date,
+        .sub-project-date {
+            flex: none;
+            margin-left: 0;
+            border: 1px solid #e4e0da;
+            border-radius: 999px;
+            padding: 2px 9px;
+            font-size: 0.62rem;
+            color: var(--fg-dimmer);
+            white-space: nowrap;
+        }
+
+        /* ─── Sub-project timeline rail ─── */
+        .sub-projects {
+            margin-top: 22px;
+            margin-left: 6px;
+            padding-left: 26px;
+            border-left: 1px solid #e2ded8;
+        }
+
+        .sub-project::before {
+            content: "";
+            position: absolute;
+            left: -30px;
+            top: 7px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--bg);
+            border: 1px solid #bdb8b0;
+        }
+
+        .sub-project:last-child { margin-bottom: 0; }
+
+        /* ─── Branded research objects (SLAM / Hedgebook) ─── */
+        .obj {
+            border-left: 2px solid;
+            border-bottom: none !important;
+            padding: 14px 16px 14px 17px;
+            margin-bottom: 14px;
+            border-radius: 0 6px 6px 0;
+            transition: background 0.25s ease;
+        }
+
+        .obj:last-child {
+            margin-bottom: 0;
+            padding-bottom: 14px;
+        }
+
+        .obj-slam {
+            border-left-color: #0d7680;
+            background: rgba(13, 118, 128, 0.04);
+        }
+
+        .obj-slam:hover { background: rgba(13, 118, 128, 0.08); }
+
+        .obj-hedge {
+            border-left-color: #15803d;
+            background: rgba(21, 128, 61, 0.04);
+        }
+
+        .obj-hedge:hover { background: rgba(21, 128, 61, 0.08); }
+
+        .slam-mark {
+            font-family: 'JetBrains Mono', monospace;
+            color: #0d7680;
+            margin-left: 6px;
+            font-weight: 500;
+        }
+
+        .obj-slam .project-desc a {
+            color: #0d7680;
+            text-decoration-color: rgba(13, 118, 128, 0.4);
+        }
+
+        .obj-slam .project-desc a:hover { text-decoration-color: #0d7680; }
+
+        .hedge-badge {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 17px;
+            height: 17px;
+            border-radius: 4px;
+            background: #15803d;
+            color: #fff;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.66rem;
+            font-weight: 500;
+            line-height: 1;
+            margin-left: 7px;
+            vertical-align: middle;
+        }
+
+        .obj-hedge .project-desc a {
+            color: #15803d;
+            text-decoration-color: rgba(21, 128, 61, 0.4);
+        }
+
+        .obj-hedge .project-desc a:hover { text-decoration-color: #15803d; }
+
         @media (max-width: 600px) {
             html {
                 font-size: 16px;
@@ -449,11 +593,13 @@
                 padding: 14px 0;
             }
 
-            .sub-project {
-                margin-left: 16px;
+            .sub-projects {
+                margin-left: 4px;
+                padding-left: 18px;
             }
         }
     </style>
+    <script>document.documentElement.className += ' js';</script>
 </head>
 <body>
     <div class="container">
@@ -465,6 +611,7 @@
         </div>
 
         <nav class="nav">
+            <a href="#now">Now</a>
             <a href="#research">Research</a>
             <a href="#projects">Projects</a>
             <a href="#writing">Writing</a>
@@ -474,72 +621,107 @@
         <h1 class="title">Lauris</h1>
 
         <div class="bio">
-            <p>I like thinking about systems and how to best formalize them from a market structure perspective.</p>
+            <p>I think of myself as a Forward Deployed Philosopher: technical competence across a few domains, plus natural language programming (writing and posting to materialize ideas), pointed at global practical problems that carry real theoretical weight.</p>
 
-            <p>How they form, why they fail, what emerges from the wreckage. Mostly I'm trying to understand information failure: who knows what, who can't know what, and what happens in the gap.</p>
+            <p>I like thinking about systems and how to best formalize them from a market structure perspective. How they form, why they fail, what emerges from the wreckage. Mostly I'm trying to understand information failure: who knows what, who can't know what, and what happens in the gap.</p>
 
             <p>Philosophy first. International Philosophy Olympiad laureate in high school, then graduated from the London School of Economics.</p>
 
             <p>If I had to frame what I like thinking about the most, I would call it exploring legibility, order and systems that have convexity dynamics.</p>
-
-            <p class="current">Lately, prediction markets, <a href="https://x.com/lzminsky/status/2051741765682508073" target="_blank">as a novel, new asset class</a>.</p>
-
-            <p>At times, I work alongside the biggest exchanges for the category when it comes to theory and market design, as well as advising early stage teams wherever I can.</p>
         </div>
 
         <div class="links">
-            <a href="https://twitter.com/lzminsky" target="_blank">@lzminsky</a>
+            <a href="https://twitter.com/lzminsky" target="_blank" rel="noopener">@lzminsky</a>
             <a href="mailto:hello@lauris.xyz">hello@lauris.xyz</a>
         </div>
 
-        <div class="section" id="research">
-            <div class="section-title">Research</div>
+        <div class="section" id="now" data-reveal>
+            <div class="section-title">Now</div>
+            <p class="section-intro">Lately, prediction markets, as a novel asset class. Currently, I am in the formation phase of a new venture, which is a convergence of the work I have been doing the past decade.</p>
+            <p class="section-intro" style="margin-bottom: 16px;">Outside of that, I am:</p>
+            <div class="cv-item">advising portfolio companies</div>
+            <div class="cv-item">working on research projects, independently or with larger market players (below)</div>
+            <div class="cv-item">exploring and designing event-contract structures with potential originators</div>
+            <div class="cv-item">writing on Twitter</div>
+        </div>
 
-            <div class="project">
-                <div class="project-name">SLAM — Seeing Like a Market</div>
-                <p class="project-desc">Microstructure framework for prediction markets. Presented at the inaugural Kalshi Research Conference, with other conference speakers being Cyril Goddeeris, Toby Moskowitz and Robin Hanson. Interactive at <a href="https://slampaper.xyz" target="_blank">slampaper.xyz</a>.</p>
+        <div class="section" id="research" data-reveal>
+            <div class="section-title">Research and Objects</div>
+
+            <p class="section-intro">My previous academic research at the London School of Economics centered on systemic risk: pathological contagion models, Arrow-Debreu securities, and permutations of those securities structured around swaps, which led naturally to my interest in the institutional use of event contracts. A separate strand examined the economic efficiency of the ISDA MA / CSA structure.</p>
+
+            <div class="project obj obj-slam">
+                <div class="project-name">SLAM: Seeing Like a Market <span class="slam-mark">⌐</span></div>
+                <p class="project-desc">A Lakatosian research programme on prediction-market microstructure. An initial Thesis Manuscript was its first artifact, not the programme itself. Presented at the inaugural Kalshi Research Conference alongside Cyril Goddeeris, Toby Moskowitz and Robin Hanson. Interactive at <a href="https://slampaper.xyz" target="_blank" rel="noopener">slampaper.xyz</a>.</p>
+            </div>
+
+            <div class="project obj obj-hedge">
+                <div class="project-name">Hedgebook <span class="hedge-badge">H</span></div>
+                <p class="project-desc">Maps every company in the S&amp;P 500 to the Kalshi event contracts pricing its key risks, each paired to its traditional-derivative analog. → <a href="https://hedgespx.com" target="_blank" rel="noopener">hedgespx.com</a></p>
             </div>
         </div>
 
-        <div class="section" id="projects">
+        <div class="section" id="projects" data-reveal>
             <div class="section-title">Projects and Products</div>
 
-            <p class="section-intro">As an operator, I have built products that have generated 8-figures in gross spend, seven-figures in fees and have, in total, acquired six-figures in activated users.</p>
+            <p class="section-intro">As an operator, I have built products across consumer markets and financial infrastructure.</p>
 
             <div class="project">
-                <div class="project-name">Insrt Labs <span class="project-mark">┐</span> <span class="project-date">2022–2025</span></div>
+                <div class="project-head">
+                    <div class="project-name">Insrt Labs <span class="project-mark">┐</span></div>
+                    <span class="project-date">2022–2025</span>
+                </div>
                 <p class="project-desc">I ran Insrt Labs for 36 months across the consumer-crypto cycle: NFT financialization, onchain gacha redemption, then gamified spot-market routing. Raised $3m in external capital pre-product against 8-figures in topline spend processed. Shutdown in December 2025 after the market changed.</p>
 
-                <div class="sub-project">
-                    <div class="sub-project-name">Multiplier <span class="sub-project-date">2024–2025</span></div>
-                    <p class="sub-project-desc">A social casino with spot market interactions. Users play and win long-tail assets. A system for taking non-rotational capital and injecting it into spot markets. Brand ambassadors FaZe Kay and Bryce Hall; ecosystem partners included the Solana Foundation and Raydium. I was working with my close friend and Head of Growth <a href="https://twitter.com/gritcult" target="_blank">Gritcult</a> on distribution.</p>
-                </div>
+                <div class="sub-projects">
+                    <div class="sub-project">
+                        <div class="sub-project-head">
+                            <div class="sub-project-name">Multiplier</div>
+                            <span class="sub-project-date">2024–2025</span>
+                        </div>
+                        <p class="sub-project-desc">A social casino with spot market interactions. Users play and win long-tail assets. A system for taking non-rotational capital and injecting it into spot markets. Brand ambassadors FaZe Kay and Bryce Hall; ecosystem partners included the Solana Foundation and Raydium. I was working with my close friend and Head of Growth <a href="https://twitter.com/gritcult" target="_blank">Gritcult</a> on distribution.</p>
+                    </div>
 
-                <div class="sub-project">
-                    <div class="sub-project-name">Insrt / Blast <span class="sub-project-date">2024</span></div>
-                    <p class="sub-project-desc">One of the first onchain gacha redemption products. Just-in-time inventory mechanism designed under capital constraint. <a href="https://x.com/_bbodd/status/1773817755457757643" target="_blank">People made money and had fun.</a></p>
-                </div>
+                    <div class="sub-project">
+                        <div class="sub-project-head">
+                            <div class="sub-project-name">Insrt / Blast</div>
+                            <span class="sub-project-date">2024</span>
+                        </div>
+                        <p class="sub-project-desc">One of the first onchain gacha redemption products. Just-in-time inventory mechanism designed under capital constraint. <a href="https://x.com/_bbodd/status/1773817755457757643" target="_blank">People made money and had fun.</a></p>
+                    </div>
 
-                <div class="sub-project">
-                    <div class="sub-project-name">Insrt <span class="sub-project-date">2022–2023</span></div>
-                    <p class="sub-project-desc">Yearn for NFT financialization. Fractionalization and yield-generation legos; partnerships included Metastreet (now usd.ai), Pudgy Penguins and the Berachain ecosystem.</p>
+                    <div class="sub-project">
+                        <div class="sub-project-head">
+                            <div class="sub-project-name">Insrt</div>
+                            <span class="sub-project-date">2022–2023</span>
+                        </div>
+                        <p class="sub-project-desc">Yearn for NFT financialization. Fractionalization and yield-generation legos; partnerships included Metastreet (now usd.ai), Pudgy Penguins and the Berachain ecosystem.</p>
+                    </div>
                 </div>
             </div>
 
             <div class="project">
-                <div class="project-name">Vaal <span class="project-date">2020–2021</span></div>
+                <div class="project-name">LSE Systemic Risk Centre</div>
+                <p class="project-desc">Researcher. Worked on financial contagion models and the propagation of systemic risk across interconnected institutions.</p>
+            </div>
+
+            <div class="project">
+                <div class="project-head">
+                    <div class="project-name">Vaal</div>
+                    <span class="project-date">2020–2021</span>
+                </div>
                 <p class="project-desc">Building the European version of dv01. A plumbing engine for securitization that we built with some of my best friends from the LSE.</p>
             </div>
         </div>
 
-        <div class="section" id="writing">
+        <div class="section" id="writing" data-reveal>
             <div class="section-title">Writing</div>
-            <p class="writing-pointer"><a href="https://twitter.com/lzminsky/highlights" target="_blank">Twitter highlights</a> — mostly prediction markets, microstructure, mechanism design, and market regimes.</p>
+            <p class="writing-pointer"><a href="https://twitter.com/lzminsky/highlights" target="_blank">Twitter highlights</a>. Mostly prediction markets, microstructure, mechanism design, and market regimes.</p>
         </div>
 
-        <div class="divider"></div>
+        <div class="divider" data-reveal></div>
 
-        <div class="books-section" id="library">
+        <div class="books-section" id="library" data-reveal>
             <div class="books-title">The Library and the Shibboleth</div>
 
             <ol class="books-list">
@@ -646,9 +828,28 @@
             </ol>
         </div>
 
-        <div class="footer">
+        <div class="footer" data-reveal>
             <span class="footer-mark">┐</span>
         </div>
     </div>
+
+    <script>
+        (function () {
+            var els = document.querySelectorAll('[data-reveal]');
+            if (!('IntersectionObserver' in window)) {
+                els.forEach(function (el) { el.classList.add('is-visible'); });
+                return;
+            }
+            var io = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        io.unobserve(entry.target);
+                    }
+                });
+            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
+            els.forEach(function (el) { io.observe(el); });
+        })();
+    </script>
 </body>
 </html>
